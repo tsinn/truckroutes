@@ -17,7 +17,7 @@ function init() {
     });       
     routesLayer.addTo(MAP);
     
-    MAP.on('click', function(e) {        
+    MAP.on('click', 'routesLayer', function(e) {        
         var popLocation= e.latlng;
         var popup = L.popup()
         .setLatLng(popLocation)
