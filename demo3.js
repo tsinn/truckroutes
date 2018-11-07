@@ -8,15 +8,12 @@ function init() {
     // Define a style
     var routeStyle = {
         "color": "#000000",
-        "weight": 1,
+        "weight": 2,
         "opacity": 1
     };
     
     var routesLayer = new L.GeoJSON.AJAX("routes.json", {
         style:routeStyle
-        },
-        onEachFeature: function (feature, layer) {
-            layer.bindPopup(feature.properties.OrigDestNa);
         });
     routesLayer.addTo(MAP);
 
