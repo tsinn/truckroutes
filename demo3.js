@@ -15,13 +15,14 @@ function init() {
     var routesLayer = new L.GeoJSON.AJAX("routes.json", {
         style:routeStyle
     });       
-    routesLayer.addTo(MAP);    
+    routesLayer.addTo(MAP);
     
-    MAP.on('click', 'routesLayer', function (e) {
-    new L.Popup()
-        .setLngLat(e.lngLat)
-        .setHTML(e.features.MAP(function(feature) { return feature.properties.OrigDestNa; }).join(', '))
-        .addTo(MAP);
+    MAP.on('click', function(e) {        
+        var popLocation= e.latlng;
+        var popup = L.popup()
+        .setLatLng(popLocation)
+        .setContent('<p>Hello world!<br />This is a nice popup.</p>')
+        .openOn(MAP);        
     });
 
 
