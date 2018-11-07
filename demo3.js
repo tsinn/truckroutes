@@ -12,9 +12,18 @@ function init() {
         "opacity": 1
     };
     
+    function onEachFeature(feature, layer) {
+  // does this feature have a property named popupContent?
+  if (feature.properties && feature.properties.OrigDestNa) {
+    layer.bindPopup(feature.properties.OrigDestNa);
+  }
+}
+    
+    
     var routesLayer = new L.GeoJSON.AJAX("routes.json", {
-        style:routeStyle
-        });
+        style:routeStyle,
+        onEachFeature: onEachFeature,
+        });       
     routesLayer.addTo(MAP);
 
     // the PixelFilter tilelayer
