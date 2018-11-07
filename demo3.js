@@ -25,7 +25,6 @@ function init() {
         .openOn(MAP);        
     });
 
-
     // the PixelFilter tilelayer
     OVERLAY = L.tileLayerPixelFilter('https://storage.googleapis.com/ee-layers/srtm/{z}/{x}/{y}', {
         tms: false, // I used gdal2tiles.py so these tiles use TMS numbering, not WMS-c numbering
