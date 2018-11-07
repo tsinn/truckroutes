@@ -19,7 +19,7 @@ function init() {
     
     var popupContent = '<p>Hello World</p';
     
-    routesLayer.bindPopup(popupContent, popupOptions);
+    routesLayer.bindPopup(popupContent);
     routesLayer.on('click', function(){
         routesLayer.openPopup(latlng);
     });
