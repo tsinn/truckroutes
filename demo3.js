@@ -16,14 +16,6 @@ function init() {
         style:routeStyle
     });       
     routesLayer.addTo(MAP);
-    
-    MAP.on('click', 'routesLayer', function(e) {        
-        var popLocation= e.latlng;
-        var popup = L.popup()
-        .setLatLng(popLocation)
-        .setContent('<p>Hello world!<br />This is a nice popup.</p>')
-        .openOn(MAP);        
-    });
 
     // the PixelFilter tilelayer
     OVERLAY = L.tileLayerPixelFilter('https://storage.googleapis.com/ee-layers/srtm/{z}/{x}/{y}', {
