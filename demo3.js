@@ -17,10 +17,11 @@ function init() {
     });       
     routesLayer.addTo(MAP);
     
-    MAP.on('click', 'routesLayer', {
-        var popup = L.popup()
-        .setContent('<p>Hello world!<br />This is a nice popup.</p>')
-        .openOn(MAP);        
+    var popupContent = '<p>Hello World</p';
+    
+    routesLayer.bindPopup(popupContent, popupOptions);
+    routesLayer.on('click', function(){
+        routesLayer.openPopup(latlng);
     });
 
     // the PixelFilter tilelayer
