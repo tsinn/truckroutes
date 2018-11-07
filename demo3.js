@@ -20,7 +20,7 @@ function init() {
     MAP.on('click', 'routesLayer', function (e) {
     new L.Popup()
         .setLngLat(e.lngLat)
-        .setHTML(e.features.map(function(feature) { return feature.properties.OrigDestNa; }).join(', '))
+        .setHTML(e.features.MAP(function(feature) { return feature.properties.OrigDestNa; }).join(', '))
         .addTo(MAP);
     });
 
