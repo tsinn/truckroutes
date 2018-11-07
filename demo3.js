@@ -5,7 +5,15 @@ function init() {
         maxZoom:8,
     }).setView([39.8283,-98.5795],4);
     
-    var routesLayer = new L.GeoJSON.AJAX("routes.json");       
+    // Define a style
+    var routeStyle = {
+        "color": "#ff7800",
+        "weight": 5,
+        "opacity": 0.65
+    };
+    
+    var routesLayer = new L.GeoJSON.AJAX("routes.json",
+    {style:routeStyle});       
     routesLayer.addTo(MAP);
 
     // the PixelFilter tilelayer
