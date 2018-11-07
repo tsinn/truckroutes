@@ -4,6 +4,9 @@ function init() {
         minZoom:1,
         maxZoom:8,
     }).setView([39.8283,-98.5795],4);
+    
+    var routesLayer = new L.GeoJSON.AJAX("routes.json");       
+    routesLayer.addTo(MAP);
 
     // the PixelFilter tilelayer
     OVERLAY = L.tileLayerPixelFilter('https://storage.googleapis.com/ee-layers/srtm/{z}/{x}/{y}', {
