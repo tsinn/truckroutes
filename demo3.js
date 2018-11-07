@@ -12,19 +12,18 @@ function init() {
         "opacity": 1
     };
     
-    function onEachFeature(feature, layer) {
-  // does this feature have a property named popupContent?
-  if (feature.properties && feature.properties.OrigDestNa) {
-    layer.bindPopup(feature.properties.OrigDestNa);
-  }
-}
-    
-    
     var routesLayer = new L.GeoJSON.AJAX("routes.json", {
-        style:routeStyle,
-        onEachFeature: onEachFeature,
-        });       
-    routesLayer.addTo(MAP);
+        style:routeStyle
+    });       
+    routesLayer.addTo(MAP);    
+    
+    MAP.on('click', 'routesLayer', function (e) {
+    new L.Popup()
+        .setLngLat(e.lngLat)
+        .setHTML(e.features.map(function(feature) { return feature.properties.OrigDestNa; }).join(', '))
+        .addTo(MAP);
+    });
+
 
     // the PixelFilter tilelayer
     OVERLAY = L.tileLayerPixelFilter('https://storage.googleapis.com/ee-layers/srtm/{z}/{x}/{y}', {
