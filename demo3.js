@@ -8,7 +8,7 @@ function init() {
     // Define a style
     var routeStyle = {
         "color": "#000000",
-        "weight": 2,
+        "weight": 1,
         "opacity": 1
     };
     
