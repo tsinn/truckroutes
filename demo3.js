@@ -12,8 +12,12 @@ function init() {
         "opacity": 1
     };
     
-    var routesLayer = new L.GeoJSON.AJAX("routes.json",
-    {style:routeStyle});       
+    var routesLayer = new L.GeoJSON.AJAX("routes.json", {
+        style:routeStyle
+        },
+        onEachFeature: function (feature, layer) {
+            layer.bindPopup(feature.properties.OrigDestNa);
+        });
     routesLayer.addTo(MAP);
 
     // the PixelFilter tilelayer
