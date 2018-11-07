@@ -7,9 +7,9 @@ function init() {
     
     // Define a style
     var routeStyle = {
-        "color": "#ff7800",
-        "weight": 5,
-        "opacity": 0.65
+        "color": "#000000",
+        "weight": 1,
+        "opacity": 1
     };
     
     var routesLayer = new L.GeoJSON.AJAX("routes.json",
