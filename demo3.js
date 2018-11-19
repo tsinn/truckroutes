@@ -8,20 +8,32 @@ function init() {
     // Define a style
     var routeStyle = {
         "color": "#000000",
-        "weight": 2,
-        "opacity": 1
+        "weight": 3,
+        "opacity": 0.5
     };
     
-    var routesLayer = new L.GeoJSON.AJAX("routes.json", {
-        style:routeStyle
-    });       
-    routesLayer.addTo(MAP);
+    function popUp(feature,layer) {
+        layer.bindPopup(feature.properties.OrigDest);
+    }
     
-    var popupContent = '<p>Hello World</p';
+    //Fetch some data from a GeoJSON file
+    $.getJSON("https://raw.githubusercontent.com/tsinn/truckroutes/master/routes.json", function(json) {
     
-    routesLayer.bindPopup(popupContent);
-    routesLayer.on('click', function(){
-        routesLayer.openPopup(latlng);
+      var routesLayer = L.geoJson(json, {
+        style:routeStyle,
+        onEachFeature:popUp
+      });
+      var sliderControl = L.control.sliderControl({
+        layer: routesLayer,
+        timeAttribute: "vmt1",
+        isEpoch: true,
+        range: true
+      });
+      
+      //Make sure to add the slider to the map ;-)
+      MAP.addControl(sliderControl);
+      //An initialize the slider
+      sliderControl.startSlider();
     });
 
     // the PixelFilter tilelayer
