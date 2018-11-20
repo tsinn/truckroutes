@@ -27,7 +27,7 @@ function init() {
         layer: routesLayer,
         timeAttribute: "vmt1",
         isEpoch: true,
-        range: true
+        range: false
       });
       
       //Make sure to add the slider to the map ;-)
