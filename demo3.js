@@ -1,4 +1,4 @@
-var MAP, OVERLAY, CartoDB_PositronNoLabels, CartoDB_PositronOnlyLabels;
+var MAP, OVERLAY;
 function init() {
     var MAP = L.map('map', {
         minZoom:1,
@@ -27,31 +27,19 @@ function init() {
         layer: routesLayer,
         timeAttribute: "vmt1",
         isEpoch: true,
-        range: false
+        range: true
       });
       
       //Make sure to add the slider to the map ;-)
       MAP.addControl(sliderControl);
-      //And initialize the slider
+      //An initialize the slider
       sliderControl.startSlider();
     });
 
-    CartoDB_PositronNoLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 19
-    }).addTo(MAP);
-    
     // the PixelFilter tilelayer
     OVERLAY = L.tileLayerPixelFilter('https://storage.googleapis.com/ee-layers/srtm/{z}/{x}/{y}', {
         tms: false, // I used gdal2tiles.py so these tiles use TMS numbering, not WMS-c numbering
         matchRGBA: null, // preserve whatever color was in the pixel previously
         missRGBA:  [ 255, 255, 255, 0 ], // fill non-matching pixels with solid white
     }).addTo(MAP);
-    
-    CartoDB_PositronOnlyLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png', {
-         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-         subdomains: 'abcd',
-         maxZoom: 19
-     }).addTo(MAP);
 }
