@@ -4,12 +4,27 @@ function init() {
         minZoom:1,
         maxZoom:8,
     }).setView([39.8283,-98.5795],4);
+
+    L.TileLayer.Voyager = L.TileLayer.extend({
+      options: {
+        enableCanvas: true
+      }
+    });
+
+    L.tileLayer.voyager = function(url, options) {
+      return new L.TileLayer.Voyager(url, options);
+    };    
+    
+    L.tileLayer.voyager('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy;<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy;<a href="https://carto.com/attribution">CARTO</a>'
+      }).addTo(MAP);
     
     // Define a style
     var routeStyle = {
         "color": "#000000",
         "weight": 3,
-        "opacity": 0.5
+        "opacity": 1
     };
     
     function popUp(feature,layer) {
